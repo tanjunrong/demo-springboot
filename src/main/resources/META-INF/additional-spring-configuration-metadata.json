@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "mybatis-plus.type-aliases-package",
+      "type": "java.lang.String",
+      "description": "mybatis-plus扫描实体地址."
+    },
+    {
+      "name": "mybatis-plus.mapper-locations",
+      "type": "java.lang.String",
+      "description": "mybatis-plus扫描mapper地址."
+    },
+    {
+      "name": "mybatis-plus.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.String",
+      "description": "mybatis-plus自动驼峰转换配置."
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.id-type",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-plus.global-config.db-config.id-type."
+    },
+    {
+      "name": "mybatis-plus.global-config.db-config.field-strategy",
+      "type": "java.lang.String",
+      "description": "Description for mybatis-plus.global-config.db-config.field-strategy."
+    }
+  ] }

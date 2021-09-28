@@ -1,0 +1,60 @@
+spring:
+  application:
+      name: demo-springboot
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 50MB
+  profiles:
+      active: @SpringProfilesActive@
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo_springboot?characterEncoding=utf8mb4&useSSL=false&useUnicode=true&allowMultiQueries=true&autoReconnect=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  devtools:
+    livereload:
+      port: 43155
+
+
+
+## Mybatis-plus ����
+mybatis-plus:
+  type-aliases-package: com.tanjr.demo.pojo
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+      #配置JdbcTypeForNull, oracle数据库必须配置
+#      jdbc-type-for-null: 'null'
+  global-config:
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: NOT_EMPTY
+      #驼峰下划线转换
+      table-underline: true
+      #mp2.3+ 全局表前缀 mp_
+      #table-prefix: mp_
+      #刷新mapper 调试神器
+      #refresh-mapper: true
+      #数据库大写下划线转换
+      #capital-mode: true
+      # Sequence序列接口实现类配置
+      #key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+      #逻辑删除配置（下面3个配置）
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+      #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+      #自定义填充策略接口实现
+      #meta-object-handler: com.baomidou.mybatisplus.core.handlers.MetaObjectHandler
+server:
+  servlet:
+      context-path: /${spring.application.name}
+  port: 8866
+
