@@ -11,10 +11,12 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <springboot.version>2.5.4</springboot.version>
-        <jackson.version>2.12.4</jackson.version>
-        <lombok.version>1.18.12</lombok.version>
+        <springboot.version>2.7.0</springboot.version>
+        <jackson.version>2.13.3</jackson.version>
+        <lombok.version>1.18.24</lombok.version>
         <springfox.version>3.0.0</springfox.version>
+        <start-class>com.tanjr.demo.MainApplication</start-class>
+        <main.class>com.tanjr.demo.MainApplication</main.class>
     </properties>
 
     <dependencies>
@@ -28,7 +30,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <version>2.3.4.RELEASE</version>
+            <version>${springboot.version}</version>
             <optional>true</optional>
         </dependency>
 
@@ -36,13 +38,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-            <version>2.2.6.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>2.2.6.RELEASE</version>
+            <version>${springboot.version}</version>
             <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
         </dependency>
 
@@ -50,35 +52,48 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.40</version>
+            <version>8.0.29</version>
         </dependency>
 
         <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.24</version>
+            <version>1.2.11</version>
         </dependency>
 
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
+            <version>3.5.2</version>
         </dependency>
 
         <!-- mybatis plus 代码生成器依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.4.0</version>
+            <version>3.5.2</version>
         </dependency>
+
+        <!-- mybatis plus 多数据源 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.5.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions><!--版本号-->
+        </dependency>
+
         <!-- 代码生成器模板 -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>2.3</version>
         </dependency>
-
 
 
         <!-- lombok -->
@@ -100,6 +115,20 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--配置文件加密-->
@@ -113,7 +142,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -127,6 +156,11 @@
             <artifactId>powermock-module-junit4</artifactId>
             <version>2.0.9</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
     </dependencies>
 
@@ -170,13 +204,15 @@
                 </includes>
             </resource>
         </resources>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.tanjr.demo.MainApplication</mainClass>
+                </configuration>
+                <version>${springboot.version}</version>
+            </plugin>
+        </plugins>
     </build>
 </project>

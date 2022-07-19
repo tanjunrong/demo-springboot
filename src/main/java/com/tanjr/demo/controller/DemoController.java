@@ -1,4 +1,4 @@
-package com.tanjr.demo.controller.demo;
+package com.tanjr.demo.controller;
 
 import com.tanjr.demo.common.ResponseData;
 import com.tanjr.demo.controller.demo.vo.DemoVO;
@@ -38,4 +38,6 @@ public class DemoController {
         Demo demo = demoService.getById(demoId);
         return ResponseData.success(demo);
     }
+
+
 }
