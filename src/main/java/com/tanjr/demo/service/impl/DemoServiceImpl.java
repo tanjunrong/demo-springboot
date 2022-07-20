@@ -1,6 +1,6 @@
 package com.tanjr.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tanjr.demo.controller.demo.vo.DemoVO;
 import com.tanjr.demo.mapper.DemoMapper;
@@ -24,6 +24,6 @@ public class DemoServiceImpl extends ServiceImpl<DemoMapper, Demo> implements De
 
         // Printing the Key
         System.out.println(key);
-        return baseMapper.selectList(new LambdaQueryWrapper<Demo>().eq(Demo::getName, demoVO.getName()));
+        return baseMapper.selectList(new QueryWrapper<>());
     }
 }
