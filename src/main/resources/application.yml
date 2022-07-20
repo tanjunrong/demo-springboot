@@ -9,15 +9,20 @@ spring:
       active: @SpringProfilesActive@
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
   datasource:
-    url: jdbc:mysql://localhost:3306/demo_springboot?characterEncoding=utf8mb4&useSSL=false&useUnicode=true&allowMultiQueries=true&autoReconnect=true&serverTimezone=GMT%2B8
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    dynamic:
+      primary: master
+      strict: true
+      datasource:
+        master:
+          url: ENC(/J8u++aBzIyaeKXKeZepu721WZcSQgUb/SQkprmeguWLVPXwCzXXZqpQtAoRAYPPnV3PqoTpAtj3jGHJbSIH9J4v+eT2G+px)
+          username: ENC(49vvftWv/IwSaZOax98JIS2Is3Li+IbrgaFgZanD7/A=)
+          password: ENC(Qc/a7rIMxyXrl5a/eQ9UElHKPwkC56HyLbaxZcmUEWs=)
   devtools:
     livereload:
       port: 43155
-
 
 
 ## Mybatis-plus ����
